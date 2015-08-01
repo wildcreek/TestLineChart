@@ -13,27 +13,21 @@ import com.github.mikephil.charting.data.DataSet;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
-import com.github.mikephil.charting.listener.OnChartGestureListener;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.Highlight;
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MotionEvent;
-import android.widget.SeekBar;
-import android.widget.SeekBar.OnSeekBarChangeListener;
 
-public class MainActivity extends Activity implements OnChartGestureListener, OnChartValueSelectedListener{
+public class MainActivity extends Activity  {
 	private LineChart mChart;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		mChart = (LineChart) findViewById(R.id.chart1);
-		mChart.setOnChartGestureListener(this);
-		mChart.setOnChartValueSelectedListener(this);
+		mChart = (LineChart) findViewById(R.id.chart_act_report);
 		mChart.setDrawGridBackground(false);
 		// no description text
 		mChart.setDescription("");
@@ -86,7 +80,7 @@ public class MainActivity extends Activity implements OnChartGestureListener, On
 		mChart.getAxisRight().setEnabled(false);
 
 		// add data
-		setData(11, 100);
+		setData(10, 100);
 
 		// mChart.setVisibleXRange(20);
 		// mChart.setVisibleYRange(20f, AxisDependency.LEFT);
@@ -167,48 +161,6 @@ public class MainActivity extends Activity implements OnChartGestureListener, On
 		mChart.setData(data);
 	}
 
-	@Override
-	public void onChartLongPressed(MotionEvent me) {
-		Log.i("LongPress", "Chart longpressed.");
-	}
 
-	@Override
-	public void onChartDoubleTapped(MotionEvent me) {
-		Log.i("DoubleTap", "Chart double-tapped.");
-	}
-
-	@Override
-	public void onChartSingleTapped(MotionEvent me) {
-		Log.i("SingleTap", "Chart single-tapped.");
-	}
-
-	@Override
-	public void onChartFling(MotionEvent me1, MotionEvent me2, float velocityX,
-			float velocityY) {
-		Log.i("Fling", "Chart flinged. VeloX: " + velocityX + ", VeloY: "
-				+ velocityY);
-	}
-
-	@Override
-	public void onChartScale(MotionEvent me, float scaleX, float scaleY) {
-		Log.i("Scale / Zoom", "ScaleX: " + scaleX + ", ScaleY: " + scaleY);
-	}
-
-	@Override
-	public void onChartTranslate(MotionEvent me, float dX, float dY) {
-		Log.i("Translate / Move", "dX: " + dX + ", dY: " + dY);
-	}
-
-	@Override
-	public void onValueSelected(Entry e, int dataSetIndex, Highlight h) {
-		Log.i("Entry selected", e.toString());
-		Log.i("", "low: " + mChart.getLowestVisibleXIndex() + ", high: "
-				+ mChart.getHighestVisibleXIndex());
-	}
-
-	@Override
-	public void onNothingSelected() {
-		Log.i("Nothing selected", "Nothing selected.");
-	}
 
 }
